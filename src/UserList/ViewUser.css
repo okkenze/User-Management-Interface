@@ -1,0 +1,60 @@
+.userDisplay {
+  margin: 80px auto;
+  text-align: center;
+}
+/* Users previews / list */
+.user-list {
+  width: 50%;
+  margin: 0 auto;
+}
+.user-preview {
+  position: relative;
+  text-align: left;
+  padding: 5px 5px;
+  margin: 20px 0;
+  padding-left: 30px;
+  border-bottom: 1px solid #fafafa;
+  width: auto;
+}
+#delChk {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px;
+}
+#del {
+  position: absolute;
+  top: 75px;
+  right: 20px;
+  padding: 6px;
+  border-radius: 50%;
+}
+#del:hover {
+  background-color: red;
+}
+#edit {
+  position: absolute;
+  top: 150px;
+  right: 20px;
+  padding: 6px;
+  border-radius: 50%;
+}
+#edit:hover {
+  background-color: green;
+}
+.user-preview:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+.user-preview h2 {
+  font-size: 20px;
+  color: #f1356d;
+  font-weight: bold;
+}
+
+.user-preview p {
+  font-size: 20px;
+  color: #360715;
+}
+.user-preview a {
+  text-decoration: none;
+}
