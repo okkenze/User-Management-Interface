@@ -28,6 +28,7 @@
   right: 20px;
   padding: 6px;
   border-radius: 50%;
+  cursor: pointer;
 }
 #del:hover {
   background-color: red;
@@ -38,6 +39,7 @@
   right: 20px;
   padding: 6px;
   border-radius: 50%;
+  cursor: pointer;
 }
 #edit:hover {
   background-color: green;

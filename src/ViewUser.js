@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import useFetch from "./useFetch";
+import { useUsersContext } from "../src/hooks/useUsersContext";
 import UsersList from "./UserList/UsersList";
 import "./UserList/ViewUser.css";
 import { ApiKey, BaseUrl } from "./Config";
@@ -7,7 +8,8 @@ import ErrorModal from "./UI/ErrorModal";
 
 const ViewUser = () => {
   //const { data: users, isPending, error } = useFetch(BaseUrl + "/getAllUsers");
-  const [users, setUsers] = useState(null);
+  const { users, dispatch } = useUsersContext();
+  //const [users, setUsers] = useState(null);
   const [isPending, setisPending] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,12 +26,13 @@ const ViewUser = () => {
       const json = await response.json();
       if (response.ok) {
         // console.log(json["data"]);
-        setUsers(json["data"]);
+        dispatch({ type: "SET_USERS", payload: json["data"] });
+        // setUsers(json["data"]);
         setisPending(false);
       }
     };
     fetchUsers();
-  }, []);
+  }, [dispatch]);
 
   const showModal = () => {
     setError({
@@ -40,8 +43,13 @@ const ViewUser = () => {
   const errorHandler = () => {
     setError(null);
   };
+  const showChecked = (chk) => {
+    console.log("Logged from ViewUser", chk);
+  };
+
   return (
     <div className="userDisplay">
+      <button onClick={showChecked}>Delete Selected</button>
       {error && (
         <ErrorModal
           title={error.title}
@@ -54,7 +62,12 @@ const ViewUser = () => {
       {isPending && <div>Loading....</div>}
       {users &&
         users.map((user) => (
-          <UsersList key={user.id} user={user} showModal={showModal} />
+          <UsersList
+            key={user.id}
+            user={user}
+            showModal={showModal}
+            showChecked={showChecked}
+          />
         ))}
     </div>
   );
